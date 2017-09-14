@@ -1,0 +1,133 @@
+
+body, button, input, select, textarea {
+    font-family: Roboto,Arial,Helvetica,sans-serif;
+}
+body {
+    font-size: 1rem;
+}
+
+.acxis_content_section{
+    margin-top:130px;
+    margin-bottom:5px;
+    border:0px solid red;
+}
+.header {
+    border-bottom:1px solid green;
+}
+.acxis_header{
+    text-align:left; width:50%;
+    margin-left:18px;
+    display: inline-block;
+}
+.acxis_header h3{
+  font-weight:bold;
+}
+
+#main-header {
+    position: absolute;
+}
+
+/*ul{
+    margin: 5px 0px 0px 0px;
+    padding-left: 0px;
+}
+ul li{
+    display: inline-block;
+    list-style-type: none;
+    padding-left:20px;
+}
+ul.square {list-style-type: square;}
+ul.square li {
+    display: block;
+    list-style-type: square;
+    padding-left:15px;
+}*/
+/*
+section{
+    display:block;
+}*/
+
+#main-footer ul.menu li a, .menu-nav-items li a, ul.menu-nav-items li a, ul.social-nav li a {
+    text-decoration: none;
+}
+.content-section{
+    overflow: hidden;
+}
+.webapp-block-container{
+    margin-top:1px; width:70%;margin-left:auto; height:auto;margin-right:auto;border:0px solid red;
+}
+.webapp-block{
+    margin: 35px;display:inline-block;width:150px;
+    height:150px;
+    border:1px solid #cbced6;
+    padding:40px 15px 40px 15px;
+    background-color: #e6e8ed;
+    vertical-align:middle;
+    text-align:center;
+    border-radius: 10px;
+}
+.webapp-block-content{
+    color:#0342a8;
+    font-weight:bold;
+    line-height:30px;
+    font-size:18px;
+}
+.webapp-block-content:hover{
+    background-color: #3164e2;
+    color:#fff;
+    font-weight:bold;
+    line-height:30px;
+    font-size:18px;
+    cursor:pointer;
+    border:1px solid #2151c6;
+}
+/*.footer {
+	width:100%;
+    height:35px;
+    position:relative;
+    bottom:0;
+    left:0;
+    background-color: rgba(70, 70, 70, 0.91);
+    color:#FFFFFF;
+    text-align: center;
+    line-height: 35px;
+    font-weight:bolder;
+}*/
+.center{
+    width:50%;
+    height:200px;
+    position:absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border:1px solid red;
+}
+td {
+    text-align:left;
+}
+
+ .widget {
+    margin: 0 auto;
+    width: 100%;
+    margin-top: 0px;
+    background-color: #fff;
+    -background-color: #222D3A;
+    border-radius: 5px;
+    box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.3);
+}
+.chart-container{
+    padding:10px;
+    width:49%;
+    border:1px solid rgba(0, 0, 0, 0.3);
+    display:inline-block;
+    margin:5px;
+}
+
+ .axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}

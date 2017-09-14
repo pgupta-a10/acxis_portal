@@ -1,0 +1,246 @@
+{% load static %}
+
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title>ACXIS Customer Dashboard</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+     <script src="{% static "customer_dashboard/libraries/js/jquery.js"%}"></script>
+     <script src="{% static "customer_dashboard/libraries/js/d3.min.js"%}"></script>
+    <script src="{% static "customer_dashboard/libraries/js/bootstrap.min.js"%}"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js'></script>
+    <link rel="stylesheet" href="{% static "customer_dashboard/libraries/css/bootstrap.min.css"%}">
+    <link rel="stylesheet" href="{% static "customer_dashboard/libraries/css/font-awesome.min.css"%}">
+    <link rel="stylesheet" href="{% static "customer_dashboard/css/axcis.css"%}">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.css"/>
+   </head>
+{% block main %}
+  <body>
+  <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 header">
+                <div style="margin-left:30px;text-align:left; width:50%;"><h3>ACXIS Customer Dashboard</h3></div>
+            </div>
+        </div>
+
+        <div class="row">
+                <div class="col-md-4" style="display: inline-block;text-align:left">
+                    <ul>
+                            <li style="display:block">Customer: {{ customer_name }}</li>
+                            <li style="display:block">Contact Person:  {{ customer_contact_person }}</li>
+                            <li  style="display:block">Contact Info: {{ customer_contact_phone }}</li>
+                            <li>{{ customer_id }}</li>
+                    </ul>
+                </div>
+
+        </div>
+
+        <div id="navi" class="row webapp-block-container">
+            <div id="asset_info" class="col-md-3 webapp-block webapp-block-content">Asset Information</div>
+            <div id="support_cases" class="col-md-3 webapp-block webapp-block-content">Support Cases</div>
+            <div id="defect" class="col-md-3 webapp-block webapp-block-content">Defect Tracking</div>
+            <div id="frs" class="col-md-3 webapp-block webapp-block-content">Feature Requests</div>
+            <div id="subscriptions" class="col-md-3 webapp-block webapp-block-content">Subscriptions</div>
+            <div id="advisories" class="col-md-3 webapp-block webapp-block-content">Advisories</div>
+            <div id="kbase" class="col-md-3 webapp-block webapp-block-content">Knowledge Base</div>
+            <div id="customer_forums" class="col-md-3 webapp-block webapp-block-content">Forums</div>
+        </div>
+
+        <div id="navi_back" class="row" style="display:none;">
+            <div class="col-md-12" style="text-align:right;margin-right:12px">
+                <button id="navi_back_btn" type="button" class="btn btn-info btn-md">Back</button>
+            </div>
+        </div>
+        <div id="content" class="row" style="margin-top:20px;display:none;text-align:center">Loading .. Please Wait!</div>
+
+  </div>
+  <div class="footer"> A10 Networks Inc. <span style="float:right;font-size:8px;width:150px">Confidential. All rights reserved.</span></div>
+
+</body>
+{% endblock %}
+{% block extrascript %}
+
+<script>
+    $(document).ready(function(){
+
+    });
+    $('#asset_info').on('click', function(e){
+        e.preventDefault();
+        $.ajax({
+            url: '{% url display_customer_asset_info %}',
+            type: "GET",
+            data: {
+                customer_id: '{{ customer_id }}'
+            },
+            beforeSend: function() {
+                $('#navi').hide();
+                $("#navi_back").hide();
+                $('#content').html('Loading .. Please Wait!').show();
+            },
+            success: function(data, status, xhr) {
+                $("#navi_back").show();
+                $('#content').show().html(data);
+            },
+            error: function(data, textStatus, jqXHR) {
+            },
+            complete: function() {
+            }
+        });
+    });
+
+$('#frs').on('click', function(e){
+        e.preventDefault();
+        $.ajax({
+            url: '{% url display_customer_frs %}',
+            type: "GET",
+            data: {
+                customer_id: '{{ customer_id }}'
+            },
+            beforeSend: function() {
+                $('#navi').hide();
+                $("#navi_back").hide();
+                $('#content').html('Loading .. Please Wait! ').show();
+            },
+            success: function(data, status, xhr) {
+                $("#navi_back").show();
+                $('#content').show().html(data);
+            },
+            error: function(data, textStatus, jqXHR) {
+            },
+            complete: function() {
+            }
+        });
+    });
+
+$('#support_cases').on('click', function(e){
+        e.preventDefault();
+        $.ajax({
+            url: '{% url display_support_cases %}',
+            type: "GET",
+            data: {
+                customer_id: '{{ customer_id }}'
+            },
+            beforeSend: function() {
+                $('#navi').hide();
+                $("#navi_back").hide();
+                $('#content').html('Loading .. Please Wait!').show();
+            },
+            success: function(data, status, xhr) {
+                $("#navi_back").show();
+                $('#content').show().html(data);
+            },
+            error: function(data, textStatus, jqXHR) {
+            },
+            complete: function() {
+            }
+        });
+});
+
+$('#defect').on('click', function(e){
+        e.preventDefault();
+        $.ajax({
+            url: '{% url display_defect_tracking %}',
+            type: "GET",
+            data: {
+                customer_id: '{{ customer_id }}'
+            },
+            beforeSend: function() {
+                $('#navi').hide();
+                $("#navi_back").hide();
+                $('#content').html('Loading .. Please Wait!').show();
+            },
+            success: function(data, status, xhr) {
+                $("#navi_back").show();
+                $('#content').show().html(data);
+            },
+            error: function(data, textStatus, jqXHR) {
+            },
+            complete: function() {
+            }
+        });
+});
+
+$('#advisories').on('click', function(e){
+        e.preventDefault();
+        $.ajax({
+            url: '{% url display_advisories %}',
+            type: "GET",
+            data: {
+                customer_id: '{{ customer_id }}'
+            },
+            beforeSend: function() {
+                $('#navi').hide();
+                $("#navi_back").hide();
+                $('#content').html('Loading .. Please Wait!').show();
+            },
+            success: function(data, status, xhr) {
+                $("#navi_back").show();
+                $('#content').show().html(data);
+            },
+            error: function(data, textStatus, jqXHR) {
+            },
+            complete: function() {
+            }
+        });
+});
+
+$('#subscriptions').on('click', function(e){
+        e.preventDefault();
+        $.ajax({
+            url: '{% url display_subscriptions %}',
+            type: "GET",
+            data: {
+                customer_id: '{{ customer_id }}'
+            },
+            beforeSend: function() {
+                $('#navi').hide();
+                $("#navi_back").hide();
+                $('#content').html('Loading .. Please Wait!').show();
+            },
+            success: function(data, status, xhr) {
+                $("#navi_back").show();
+                $('#content').show().html(data);
+            },
+            error: function(data, textStatus, jqXHR) {
+            },
+            complete: function() {
+            }
+        });
+ });
+
+
+$('#kbase').on('click', function(e){
+        e.preventDefault();
+        $.ajax({
+            url: '{% url display_knowledge_base %}',
+            type: "GET",
+            data: {
+                customer_id: '{{ customer_id }}'
+            },
+            beforeSend: function() {
+                $('#navi').hide();
+                $("#navi_back").hide();
+                $('#content').html('Loading .. Please Wait!').show();
+            },
+            success: function(data, status, xhr) {
+                $("#navi_back").show();
+                $('#content').show().html(data);
+            },
+            error: function(data, textStatus, jqXHR) {
+            },
+            complete: function() {
+            }
+        });
+ });
+
+$("#navi_back_btn").on('click', function(){
+    $('#content').html('').hide();
+    $('#navi').show();
+    $("#navi_back").hide();
+});
+</script>
+{% endblock %}
+
+</html>

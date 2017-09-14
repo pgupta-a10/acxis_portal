@@ -1,0 +1,59 @@
+{% load static %}
+
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title>ACXIS Customer Dashboard</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+     <script src="{% static "portal/libraries/js/jquery.js"%}"></script>
+    <script src="{% static "portal/libraries/js/bootstrap.min.js"%}"></script>
+    <link rel="stylesheet" href="{% static "portal/libraries/css/bootstrap.min.css"%}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" media="all" />
+    <link rel="stylesheet" href="https://www.a10networks.com/sites/default/files/css/css_-TPUph0YTvpyQkt0E32se7mM6JOvQ0Xh_3xFahiNgSc.css" media="all" />
+    <link rel="stylesheet" href="{% static "portal/css/axcis.css"%}">
+      <style>
+          .centered {
+          position: absolute
+          top: 30%;
+          left: 40%;
+              background-color: #fff;
+    -background-color: #222D3A;
+    border-radius: 5px;
+    box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.3);
+        }
+      </style>
+   </head>
+{% block main %}
+  <body>
+    {% include "header.html" %}
+
+    <section class="acxis_content_section">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12 header">
+                <div class="span6 acxis_header"><h3>ACXIS Customer Dashboard</h3></div>
+                </div>
+
+                <div class="col-sm-3 centered" style="display: inline-block;text-align:left;height:330px;margin:25px;">
+                    <form action="{% url 'employee_login' %}" method="POST">
+                        {% csrf_token %}
+                        <ul>
+                            <li style="display:block;margin-top:20px;color:#337ab7;padding-left:0px"><h4>A10 Employee Login</h4></li>
+                            <li style="display:block;margin-top:20px;padding-left:0px">Username: <input class="form-control" type="text" maxlength="12" name="username" id="username" placeholder="Corp. Username"></li>
+                            <li style="display:block;margin-top:20px;padding-left:0px">Password:  <input class="form-control" type="password" name="password" id="password" placeholder="Corp. Password"/></li>
+                        </ul>
+                        <ul style="padding-top:10px">
+                            <li style="display:block;text-align:right"><button type="submit" class="btn btn-primary">Login</button></li>
+                        </ul>
+                    </form>
+                </div>
+                </div>
+        </div>
+    </section>
+
+    {% include "footer.html" %}
+  </body>
+{% endblock %}
+</html>

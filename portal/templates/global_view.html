@@ -1,0 +1,106 @@
+{% load static %}
+
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title>ACXIS Customer Dashboard</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+     <script src="{% static "portal/libraries/js/jquery.js"%}"></script>
+    <script src="{% static "portal/libraries/js/bootstrap.min.js"%}"></script>
+      <script src="{% static "portal/libraries/js/d3.min.js"%}"></script>
+    <link rel="stylesheet" href="{% static "portal/libraries/css/bootstrap.min.css"%}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" media="all" />
+    <link rel="stylesheet" href="https://www.a10networks.com/sites/default/files/css/css_-TPUph0YTvpyQkt0E32se7mM6JOvQ0Xh_3xFahiNgSc.css" media="all" />
+    <link rel="stylesheet" href="{% static "portal/css/axcis.css"%}">
+   </head>
+{% block main %}
+  <body>
+
+  {% include "header.html" %}
+
+    <section class="acxis_content_section">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12 header">
+                    <div class="span6 acxis_header"><h3>ACXIS Global View</h3></div>
+                    <div class="span4" style="float:right;  text-align:right;margin:0px 30px 0px 0px;display: inline-block;">
+                        <form id="customer_form" action="{% url 'global_index' %}" method="GET">
+                            <select id="select_customer" name="select_customer">
+                                <option value="-1"> --- Select Customer ---</option>
+                                {% if all_customers_dict and all_customers_dict|length > 0 %}
+                                    {% for key,value in all_customers_dict.items %}
+                                        <option value="{{ key }}">{{ value }}</option>
+                                    {% endfor %}
+                                {% endif %}
+                            </select>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            {% if customer_id %}
+                <div class="row">
+                        <div class="col-md-4" style="text-align:left">
+                            <div>Customer: {{ customer_name }}</div>
+                            <div>Contact Person:  {{ customer_contact_person }}</div>
+                            <div>Contact Info: {{ customer_contact_phone }}</div>
+                            <div>{{ customer_id }}</div>
+                        </div>
+                </div>
+            {% endif %}
+
+            <div id="navi" class="row webapp-block-container">
+                <div id="asset_info" class="col-md-3 webapp-block webapp-block-content">Asset Information</div>
+                <div id="support_cases" class="col-md-3 webapp-block webapp-block-content">Support Cases</div>
+                <div id="defect" class="col-md-3 webapp-block webapp-block-content">Defect Tracking</div>
+                <div id="frs" class="col-md-3 webapp-block webapp-block-content">Feature Requests</div>
+                <div id="subscriptions" class="col-md-3 webapp-block webapp-block-content">Subscriptions</div>
+                <div id="advisories" class="col-md-3 webapp-block webapp-block-content">Advisories</div>
+                <div id="kbase" class="col-md-3 webapp-block webapp-block-content">Knowledge Base</div>
+                <div id="a10_forums" class="col-md-3 webapp-block webapp-block-content">Forums</div>
+            </div>
+
+            <div id="navi_back" class="row" style="display:none;">
+                <div class="col-md-12" style="text-align:right;margin-right:12px">
+                    <button id="navi_back_btn" type="button" class="btn btn-info btn-md">Back</button>
+                </div>
+            </div>
+
+            <div id="content" class="row" style="margin-top:20px;display:none;text-align:center">Loading .. Please Wait!</div>
+        </div>
+
+    </section>
+
+    {% include "footer.html" %}
+    <!--<div class="footer"> A10 Networks Inc. <span style="float:right;font-size:8px;width:150px">Confidential. All rights reserved.</span></div> -->
+
+</body>
+{% endblock %}
+{% block extrascript %}
+
+<script>
+    $(document).ready(function(){
+
+    });
+
+
+
+ $('#a10_forums').on('click', function(e){
+        var win = window.open('/mindshare', '_blank');
+        win.focus();
+});
+$('#select_customer').on('change', function(){
+    $('#customer_form').submit();
+});
+
+$("#navi_back_btn").on('click', function(){
+    $('#content').html('').hide();
+    $('#navi').show();
+    $("#navi_back").hide();
+});
+</script>
+{% endblock %}
+
+</html>
